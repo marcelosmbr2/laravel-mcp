@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use App\Http\Resources\UserResource;
 
 class UsersPageController extends Controller
 {
@@ -22,7 +23,7 @@ class UsersPageController extends Controller
         $users = $this->userModel->all();
 
         return Inertia::render('users/page', [
-            'users' => $users,
+            'users' => UserResource::collection($users),
         ]);
     }
 }
